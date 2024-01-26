@@ -1,8 +1,8 @@
 # Morse
 
-This Python project is an application that is capable of converting text input from the user into Morse code and playing the translation audibly.
+Bu Python projesi, kullanıcıdan alınan metin girişini Morse koda çevirir ve bu çeviriyi sesli bir şekilde kullanıcıya sunar. Ayrıca, kullanıcı bu ses dosyasını isteğe bağlı olarak kaydedebilir.
 
-## Requirements
+## Gereksinimler
 
 - Python 3.x
 - NumPy
