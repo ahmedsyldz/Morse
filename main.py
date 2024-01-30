@@ -12,12 +12,22 @@ if __name__ == "__main__":
         
         print(f"\nGirilen metin: {user_text}\nMorse kodu: {morse_code}\n")
         sound, fs = create_sound(morse_list)
-        sd.play(sound, fs)
-        sd.wait()
-        
-        save = input(f"Ses çalındı. Kaydetmek ister misiniz? (e, h): ") == "e"
 
-        if save:
-            path = save_sound(sound, fs, user_text)
-            print(f"Başarıyla kaydedildi.\nKonum: {path}\n")
-        print("*"*100)
+        while True:
+            q = input("Yapmak istediğiniz işlem?\nd(Sesi dinle) - k(Sesi kaydet) - q(Geri) -> ").lower()
+            if q == "d":
+                print(f"\n{'*'*41} Ses çalınıyor... {'*'*41}\n")
+                sd.play(sound, fs)
+                sd.wait()
+            elif q == "k":
+                save = input("\nDosya kaydediliyor.. Dosya adı (Boş bırakırsanız, dosya otomatik olarak girdiğiniz metin olarak adlandırılacaktır): ") == " "
+                if save:
+                    path = save_sound(sound, fs, user_text)
+                else:
+                    path = save_sound(sound, fs, save)
+                print(f"\nBaşarıyla kaydedildi.\nKonum: {path}\n")
+            elif q == "q":
+                break
+            else:
+                print("\nHatalı giriş!\n")
+        print(f"\n{'*'*100}\n")

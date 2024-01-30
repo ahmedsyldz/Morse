@@ -1,6 +1,6 @@
 # Morse
 
-Bu Python projesi, kullanıcıdan alınan metin girişini Morse koda çevirir ve bu çeviriyi sesli bir şekilde kullanıcıya sunar. Ayrıca, kullanıcı bu ses dosyasını isteğe bağlı olarak kaydedebilir.
+Bu Python projesi, kullanıcıdan alınan metin girişini Morse koduna çevirir. Kullanıcı istediği takdirde bu kodu sesli olarak dinleyebilir hatta kaydedebilir.
 
 ## Gereksinimler
 
@@ -8,3 +8,4 @@ Bu Python projesi, kullanıcıdan alınan metin girişini Morse koda çevirir ve
 - NumPy
 - SciPy
 - Sounddevice
+- Json

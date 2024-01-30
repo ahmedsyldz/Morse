@@ -1,69 +1,11 @@
 import os
 import re
 import numpy as np
+import json
 from scipy.io.wavfile import write
 
-MORSE_DICT = {
-    "A": ".-",
-    "B": "-...",
-    "C": "-.-.",
-    "D": "-..",
-    "E": ".",
-    "F": "..-.",
-    "G": "--.",
-    "H": "....",
-    "I": "..",
-    "J": ".---",
-    "K": "-.-",
-    "L": ".-..",
-    "M": "--",
-    "N": "-.",
-    "O": "---",
-    "P": ".--.",
-    "Q": "--.-",
-    "R": ".-.",
-    "S": "...",
-    "T": "-",
-    "U": "..-",
-    "V": "...-",
-    "W": ".--",
-    "X": "-..-",
-    "Y": "-.--",
-    "Z": "--..",
-    "Ö": "---.",
-    "Ü": "..--",
-    "Ç": "-.-..",
-    "Ş": "...-.",
-    "0": "-----",
-    "1": ".----",
-    "2": "..---",
-    "3": "...--",
-    "4": "....-",
-    "5": ".....",
-    "6": "-....",
-    "7": "--...",
-    "8": "---..",
-    "9": "----.",
-    "!": "-.-.--",
-    "\"": ".-..-.",
-    "$": "...-..-",
-    "&": ".-...",
-    "'": ".----.",
-    "(": "-.--.",
-    ")": "-.--.-",
-    "+": ".-.-.",
-    ",": "--..--",
-    "-": "-....-",
-    ".": ".-.-.-",
-    "/": "-..-.",
-    ":": "---...",
-    ";": "-.-.-.",
-    "=": "-...-",
-    "?": "..--..",
-    "@": ".--.-.",
-    "_": "..--.-",
-    " ": " "
-}
+with open('morse_dict.json', 'r', encoding='utf-8') as file:
+    MORSE_DICT = json.load(file)
 
 def text_to_morse(text):
     cleaned_text = re.sub('[^A-Z0-9 ÇŞÜÖ._@?=;:/,+\(\)\'&$\"!-]', '', text.upper().replace('İ', 'I').replace('Ğ', 'G'))
@@ -77,8 +19,6 @@ def text_to_morse(text):
 def create_sound(morse_list, frequency=1000, unit_duration=0.1):
     fs = 44100
     sound = np.array([])
-    
-    print(f"{'*'*41} Ses çalınıyor... {'*'*41}")
     
     for character, morse_code in morse_list:
         for signal in morse_code:
@@ -99,6 +39,7 @@ def create_sound(morse_list, frequency=1000, unit_duration=0.1):
 
     return sound, fs
 
-def save_sound(sound, fs, dosya_adi):
-    write(f"{dosya_adi}.wav", fs, (sound * 32767).astype(np.int16))
-    return os.path.abspath(dosya_adi)
+def save_sound(sound, fs, file_name):
+    file_name = f"{file_name}.wav"
+    write(file_name, fs, (sound * 32767).astype(np.int16))
+    return os.path.abspath(file_name)
