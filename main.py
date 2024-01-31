@@ -20,7 +20,7 @@ if __name__ == "__main__":
                 sd.play(sound, fs)
                 sd.wait()
             elif q == "k":
-                save = input("\nDosya kaydediliyor.. Dosya adı (Boş bırakırsanız, dosya otomatik olarak girdiğiniz metin olarak adlandırılacaktır): ") == " "
+                save = input("\nDosya kaydediliyor.. Dosya adı (Boş bırakırsanız, dosya otomatik olarak girdiğiniz metin olarak adlandırılacaktır): ") == ""
                 if save:
                     path = save_sound(sound, fs, user_text)
                 else:
